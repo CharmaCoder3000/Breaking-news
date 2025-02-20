@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Showcase</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            margin: 20px 0;
+        }
+
+        /* Style for all large images */
+        .large-image {
+            width: 80%;
+            max-width: 500px;
+            height: 400px;
+            background-size: cover;
+            background-position: center;
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Line separator */
+        hr {
+            width: 80%;
+            border: 1px solid #ccc;
+            margin: 30px auto;
+        }
+
+        .chapter {
+            margin-top: 20px;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        /* Background images */
+        .image1 {
+            background-image: url('one.png');
+        }
+
+        .image2 {
+            background-image: url('none.png');
+        }
+
+        .image3 {
+            background-image: url('none.png');
+        }
+        .image4 {
+            background-image: url('none.png');
+        }
+    </style>
+</head>
+<body>
+    <h1>Image Showcase</h1>
+
+    <!-- Large image at the top -->
+    <div class="large-image image1"></div>
+
+    <!-- Separator -->
+    <hr>
+
+    <!-- Image sections with chapter titles -->
+    <div class="chapter">Chapter 1: The Beginning</div>
+    <div class="large-image image2"></div>
+
+    <div class="chapter">Chapter 2: The Journey</div>
+    <div class="large-image image3"></div>
+
+    <div class="chapter">Chapter 3: The Conclusion</div>
+    <div class="large-image image4"></div>
+
+</body>
+</html>
