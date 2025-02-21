@@ -17,7 +17,6 @@
             margin: 20px 0;
         }
 
-        /* Style for all large images */
         .large-image {
             width: 80%;
             max-width: 500px;
@@ -29,7 +28,6 @@
             box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
         }
 
-        /* Line separator */
         hr {
             width: 80%;
             border: 1px solid #ccc;
@@ -42,7 +40,6 @@
             font-weight: bold;
         }
 
-        /* Background images */
         .image1 {
             background-image: url('one.png');
         }
@@ -57,18 +54,19 @@
         .image4 {
             background-image: url('none.png');
         }
+
+        .honeypot {
+            display: none;
+        }
     </style>
 </head>
 <body>
-    <h1>Inteligence.</h1>
+    <h1>Intelligence.</h1>
 
-    <!-- Large image at the top -->
     <div class="large-image image1"></div>
 
-    <!-- Separator -->
     <hr>
 
-    <!-- Image sections with chapter titles -->
     <div class="chapter">Chapter 1: The Beginning</div>
     <div class="large-image image2"></div>
 
@@ -77,6 +75,49 @@
 
     <div class="chapter">Chapter 3: The Conclusion</div>
     <div class="large-image image4"></div>
+
+    <h2>Sign Up</h2>
+    <form method="POST" action="process.php">
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <input type="text" name="honeypot" class="honeypot">
+        <button type="submit">Sign Up</button>
+        <?php
+        session_start(); // Start a session for login persistence
+        
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $username = $_POST['username'] ?? '';
+            $password = $_POST['password'] ?? '';
+            $honeypot = $_POST['honeypot'] ?? '';
+        
+            if (!empty($honeypot)) {
+                die("Access denied.");
+            }
+        
+            // Simulating a user database with hashed passwords
+            $valid_users = [
+                "admin" => password_hash("password123", PASSWORD_DEFAULT)
+            ];
+        
+            if (isset($valid_users[$username]) && password_verify($password, $valid_users[$username])) {
+                $_SESSION['user'] = $username;
+                echo "Login successful!";
+            } else {
+                echo "Invalid username or password.";
+            }
+        }
+        ?>
+    </form>
+
+    <h2>Login</h2>
+    <form method="POST" action="login.php">
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <input type="text" name="honeypot" class="honeypot">
+        <button type="submit">Login</button>
+    </form>
+
+  
 
 </body>
 </html>
