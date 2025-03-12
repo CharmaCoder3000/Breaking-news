@@ -61,7 +61,8 @@
 </head>
 <body>
     <h1>Inteligence.</h1>
-
+<p>Global Likes: <span id="counter">0</span></p>
+    <button id="incrementBtn">Like:</button>
     <!-- Large image at the top -->
     <div class="large-image image1"></div>
 
@@ -77,6 +78,28 @@
 
     <div class="chapter">Chapter 3: The Conclusion</div>
     <div class="large-image image4"></div> 
-
+<script>
+    const counterDisplay = document.getElementById("counter");
+        const button = document.getElementById("incrementBtn");
+        
+        // Load global count
+        let globalCount = localStorage.getItem("globalCount") || 0;
+        counterDisplay.textContent = globalCount;
+        
+        // Check if user has already pressed the button
+        if (localStorage.getItem("buttonPressed")) {
+            button.disabled = true;
+        }
+        
+        button.addEventListener("click", function() {
+            if (!localStorage.getItem("buttonPressed")) {
+                globalCount++;
+                localStorage.setItem("globalCount", globalCount);
+                localStorage.setItem("buttonPressed", true);
+                counterDisplay.textContent = globalCount;
+                button.disabled = true;
+            }
+        });
+</script>
 </body>
 </html>
